@@ -24,7 +24,6 @@ alias cdml="cd /Users/dalbyryan3/Documents/school/CS6350_MachineLearning"
 alias cddl="cd /Users/dalbyryan3/Documents/school/CS6955_DeepLearning"
 alias cdvr="cd /Users/dalbyryan3/Documents/school/CS6360_VirtualReality"
 alias cdrobotsem="cd /Users/dalbyryan3/Documents/school/MEEN6892_RoboticsSeminar"
-
 alias sshcade="ssh u0848407@lab1-15.eng.utah.edu"
 
 # >>> conda initialize >>>
