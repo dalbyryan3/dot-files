@@ -1,0 +1,10 @@
+.ipynb_checkpoints/
+Icon
+.DS_Store
+*.zip
+node_modules/
+.vscode/
+*~
+.*.sw*
+.eslintrc.*
+*.pyc 

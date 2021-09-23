@@ -1,0 +1,10 @@
+[user]
+	email = dalbyryan3@gmail.com
+	name = Ryan Dalby
+[core]
+	excludesfile = /Users/dalbyryan3/.gitignore
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
