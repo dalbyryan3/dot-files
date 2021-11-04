@@ -3,6 +3,7 @@
 	name = Ryan Dalby
 [core]
 	excludesfile = /Users/dalbyryan3/.gitignore
+	attributesfile = /Users/dalbyryan3/.gitattributes
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
