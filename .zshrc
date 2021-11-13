@@ -41,3 +41,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 conda activate
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -6,16 +6,19 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins to install
-" Supertab for code-completion
+" supertab for code-completion
 Plugin 'https://github.com/ervandew/supertab.git'
-" Commentary to easily comment
+" commentary to easily comment
 Plugin 'https://tpope.io/vim/commentary.git'
-" Sleuth for tabs/spaces detection
+" sleuth for tabs/spaces detection
 Plugin 'https://tpope.io/vim/sleuth.git'
-" One Dark theme
+" one Dark theme
 Plugin 'https://github.com/joshdick/onedark.vim.git'
-" Fugitive for git integration
+" fugitive for git integration
 Plugin 'https://tpope.io/vim/fugitive.git'
+" fzf for fuzzy search
+Plugin 'https://github.com/junegunn/fzf.git'
+Plugin 'https://github.com/junegunn/fzf.vim.git'
 
 call vundle#end()
 " Turn on file type detection, plugin, and indent
