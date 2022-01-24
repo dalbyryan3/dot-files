@@ -40,10 +40,10 @@ set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 set hidden
 " Turn off flashing/visual bell, may need newer Vim version (7.4+) so may need to comment out
 set belloff=all
-" Allow backpace for more senarios in insert mode
+" Allow backpace of previously inserted characters
 set backspace=indent,eol,start
 " Prevent continuation of comments to the next line
-set formatoptions-=cro
+autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Set switching time between modes and cursor modes, may have to do slightly
 " different based on os and terminal type
