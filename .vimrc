@@ -44,6 +44,8 @@ set belloff=all
 set backspace=indent,eol,start
 " Prevent continuation of comments to the next line
 autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o
+" Change comment styles for certain filetypes
+autocmd FileType c,cpp set commentstring=//\ %s
 
 " Set switching time between modes and cursor modes, may have to do slightly
 " different based on os and terminal type
