@@ -10,6 +10,7 @@ node_modules/
 *.pyc 
 bin/
 *.pkl
+*.hdf5
 
 ###
 ### Latex gitignore:
