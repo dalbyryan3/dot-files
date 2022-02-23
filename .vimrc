@@ -9,13 +9,15 @@ Plugin 'VundleVim/Vundle.vim'
 " supertab for code-completion
 Plugin 'https://github.com/ervandew/supertab.git'
 " commentary to easily comment
-Plugin 'https://tpope.io/vim/commentary.git'
+Plugin 'https://github.com/tpope/vim-commentary.git'
 " sleuth for tabs/spaces detection
-Plugin 'https://tpope.io/vim/sleuth.git'
+Plugin 'https://github.com/tpope/vim-sleuth.git'
 " one Dark theme
 Plugin 'https://github.com/joshdick/onedark.vim.git'
 " fugitive for git integration
-Plugin 'https://tpope.io/vim/fugitive.git'
+Plugin 'https://github.com/tpope/vim-fugitive.git'
+" obsession for vim session management
+Plugin 'https://github.com/tpope/vim-obsession.git'
 " fzf for fuzzy search
 Plugin 'https://github.com/junegunn/fzf.git'
 Plugin 'https://github.com/junegunn/fzf.vim.git'
