@@ -27,8 +27,6 @@ alias cdadvmech="cd /Users/dalbyryan3/Documents/school/MEEN6240_AdvancedMechatro
 alias cdai="cd /Users/dalbyryan3/Documents/school/CS6300_ArtificialIntelligence"
 alias cdgradintern="cd /Users/dalbyryan3/Documents/school/CS6945_GraduateInternship"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/dalbyryan3/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -44,3 +42,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+bindkey -e
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
