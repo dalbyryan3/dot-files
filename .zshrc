@@ -44,3 +44,5 @@ unset __conda_setup
 
 bindkey -e
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias tmux="tmux -2"
