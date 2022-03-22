@@ -18,6 +18,10 @@ Plugin 'https://github.com/joshdick/onedark.vim.git'
 Plugin 'https://github.com/tpope/vim-fugitive.git'
 " obsession for vim session management
 Plugin 'https://github.com/tpope/vim-obsession.git'
+" surround for useful surround commands
+Plugin 'https://github.com/tpope/vim-surround.git'
+" repeat for better repeat functionality 
+Plugin 'https://github.com/tpope/vim-repeat.git'
 " fzf for fuzzy search
 Plugin 'https://github.com/junegunn/fzf.git'
 Plugin 'https://github.com/junegunn/fzf.vim.git'
@@ -26,7 +30,6 @@ call vundle#end()
 " Turn on file type detection, plugin, and indent
 filetype plugin indent on
 
-
 " General Vim setup:
 " Syntax highlighting
 syntax on
@@ -34,6 +37,8 @@ syntax on
 set relativenumber
 " Color scheme
 colorscheme onedark
+" Turn on incremental search
+set incsearch
 " Set line numbers
 set number
 " Set tabs as spaces initially, sleuth will adjust based on file
