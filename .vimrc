@@ -39,6 +39,10 @@ set relativenumber
 colorscheme onedark
 " Turn on incremental search
 set incsearch
+" Case insensitive searches 
+set ignorecase
+" Search will be case sensitive if it contains an uppercase letter
+set smartcase
 " Set line numbers
 set number
 " Set tabs as spaces initially, sleuth will adjust based on file
