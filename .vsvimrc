@@ -1,3 +1,18 @@
+" Turn on relative line numbering
+set relativenumber
+" Turn on incremental search
+set incsearch
+" Case insensitive searches 
+set ignorecase
+" Search will be case sensitive if it contains an uppercase letter
+set smartcase
+" Set line numbers
+set number
+" Set tabs as spaces initially, sleuth will adjust based on file
+set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+" Allow backpace of previously inserted characters
+set backspace=indent,eol,start
+" Visual Studio command bindings
 nmap gcc :vsc Edit.ToggleLineComment<CR>
 vmap gc :vsc Edit.ToggleLineComment<CR>
 nmap gD :vsc Edit.FindAllReferences<CR>
