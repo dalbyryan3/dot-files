@@ -1,2 +1,2 @@
 # dot-files
-Dot files for various applications.
+Dot files or general config files for various applications and shells.
