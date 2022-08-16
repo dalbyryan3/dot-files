@@ -17,15 +17,13 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 alias vi="mvim -v"
 alias vim="mvim -v"
 alias ll="ls -latr"
+alias gs="git status"
+alias gl="git log"
+alias ga="git add"
+alias gc="git commit"
+alias gd="git diff"
 alias cdschool="cd /Users/dalbyryan3/Documents/school"
-alias cdresearch="cd /Users/dalbyryan3/Documents/school/research"
-alias cdrobotsem="cd /Users/dalbyryan3/Documents/school/MEEN6892_RoboticsSeminar"
-alias sshcade="ssh u0848407@lab1-15.eng.utah.edu"
 alias cdprofessional="cd /Users/dalbyryan3/Documents/professional"
-
-alias cdadvmech="cd /Users/dalbyryan3/Documents/school/MEEN6240_AdvancedMechatronics"
-alias cdai="cd /Users/dalbyryan3/Documents/school/CS6300_ArtificialIntelligence"
-alias cdgradintern="cd /Users/dalbyryan3/Documents/school/CS6945_GraduateInternship"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
