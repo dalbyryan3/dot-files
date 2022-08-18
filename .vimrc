@@ -53,6 +53,8 @@ set hidden
 set belloff=all
 " Allow backpace of previously inserted characters
 set backspace=indent,eol,start
+" Only be able to select text and not line numbers
+set mouse+=a
 " Prevent continuation of comments to the next line
 autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o
 " Change comment styles for certain filetypes
