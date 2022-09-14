@@ -45,3 +45,7 @@ bindkey -e
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias tmux="tmux -2"
+
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.1.2 # run chruby to see actual version
