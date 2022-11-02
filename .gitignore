@@ -1,5 +1,6 @@
 .ipynb_checkpoints/
-Icon
+Icon
+
 .DS_Store
 *.zip
 node_modules/
@@ -46,6 +47,9 @@ CTestTestfile.cmake
 _deps
 *.o
 *.a
+build/
+build
+Session.vim
 
 ###
 ### Latex gitignore:
