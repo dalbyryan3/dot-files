@@ -2,6 +2,12 @@
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# Persistent history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 # Set default editor 
 export VISUAL=vim
 export EDITOR="$VISUAL"
