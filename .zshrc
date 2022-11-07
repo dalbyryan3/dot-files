@@ -57,3 +57,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+if [ "$IS_VSCODE" = true ] ; then
+    tmux a -t vscode || tmux new -s vscode
+fi
