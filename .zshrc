@@ -15,7 +15,7 @@ export EDITOR="$VISUAL"
 # So commands can be edited by external text editor
 autoload -z edit-command-line
 zle -N edit-command-line
-bindkey "^X^E" edit-command-line
+bindkey "^X^E" edit-command-line # May have to source ~/.zshrc in ~/.zprofile to get this to work from within tmux when it launches a login shell (when a login shell is launched this is not sourced by default (some linux distros do something similar to give consistency accross interactive sessions))
 
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
