@@ -22,7 +22,7 @@ Plugin 'https://github.com/tpope/vim-obsession.git'
 Plugin 'https://github.com/tpope/vim-surround.git'
 " repeat for better repeat functionality 
 Plugin 'https://github.com/tpope/vim-repeat.git'
-" fzf for fuzzy search
+" fzf for fuzzy search (also integrates with ag)
 Plugin 'https://github.com/junegunn/fzf.git'
 Plugin 'https://github.com/junegunn/fzf.vim.git'
 
