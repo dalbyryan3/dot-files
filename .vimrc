@@ -59,6 +59,8 @@ set mouse+=a
 autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o
 " Change comment styles for certain filetypes
 autocmd FileType c,cpp set commentstring=//\ %s
+" Add ruler
+set colorcolumn=80
 
 " Set switching time between modes and cursor modes, may have to do slightly
 " different based on os and terminal type
