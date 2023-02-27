@@ -1,3 +1,4 @@
+# Can install ohmyzsh (https://github.com/ohmyzsh/ohmyzsh, recommended theme https://github.com/win0err/aphrodite-terminal-theme)
 # So terminal colors work correctly
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
