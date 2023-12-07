@@ -7,7 +7,6 @@ node_modules/
 .vscode/
 *~
 .*.sw*
-.eslintrc.*
 *.pyc 
 bin/
 *.pkl
