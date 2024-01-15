@@ -25,6 +25,8 @@ Plugin 'https://github.com/tpope/vim-repeat.git'
 " fzf for fuzzy search (also integrates with ag)
 Plugin 'https://github.com/junegunn/fzf.git'
 Plugin 'https://github.com/junegunn/fzf.vim.git'
+" Kotlin syntax highlighting
+Plugin 'https://github.com/udalov/kotlin-vim.git'
 
 call vundle#end()
 " Turn on file type detection, plugin, and indent
