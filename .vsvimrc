@@ -15,7 +15,7 @@ set backspace=indent,eol,start
 " Visual Studio command bindings
 nmap gcc :vsc Edit.ToggleLineComment<CR>
 vmap gc :vsc Edit.ToggleLineComment<CR>
-nmap gD :vsc Edit.FindAllReferences<CR>
+nmap gr :vsc Edit.FindAllReferences<CR>
 nmap gd :vsc Edit.GoToDefinition<CR>
 nmap gl :vsc Edit.PeekDefinition<CR>
 nmap gz :vsc Refactor.Rename<CR>

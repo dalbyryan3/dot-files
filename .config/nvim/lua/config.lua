@@ -34,6 +34,7 @@ require('lazy').setup({
   {'tpope/vim-obsession'},
   {'tpope/vim-surround'},
   {'tpope/vim-repeat'},
+  {'tpope/vim-unimpaired'},
   {'junegunn/fzf'},
   {'junegunn/fzf.vim'},
   {'williamboman/mason.nvim'},
@@ -75,6 +76,10 @@ lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
   lsp_zero.default_keymaps({buffer = bufnr})
+  vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', {buffer = bufnr})
+  vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', {buffer = bufnr})
+  vim.keymap.set('n', 'gz', '<cmd>lua vim.lsp.buf.rename()<cr>', {buffer = bufnr})
+  vim.keymap.set('n', 'g.', '<cmd>lua vim.lsp.buf.code_action()<cr>', {buffer = bufnr})
 end)
 
 --- if you want to know more about lsp-zero and mason.nvim
