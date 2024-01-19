@@ -27,7 +27,6 @@ require('lazy').setup({
       vim.cmd([[colorscheme onedark]])
     end,
   },
-  {'ervandew/supertab'},
   {'tpope/vim-commentary'},
   {'tpope/vim-sleuth'},
   {'tpope/vim-fugitive'},
@@ -39,6 +38,7 @@ require('lazy').setup({
   {'junegunn/fzf.vim'},
   {'williamboman/mason.nvim'},
   {'williamboman/mason-lspconfig.nvim'},
+  {'udalov/kotlin-vim'},
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
