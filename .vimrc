@@ -24,6 +24,10 @@ Plugin 'https://github.com/tpope/vim-surround.git'
 Plugin 'https://github.com/tpope/vim-repeat.git'
 " Unimpaired for common ex commands
 Plugin 'https://github.com/tpope/vim-unimpaired.git'
+" eunuch for common unix shell commands
+Plugin 'https://github.com/tpope/vim-eunuch.git'
+" vinegar for better directory navigation
+Plugin 'https://github.com/tpope/vim-vinegar.git'
 " fzf for fuzzy search (also integrates with ag)
 Plugin 'https://github.com/junegunn/fzf.git'
 Plugin 'https://github.com/junegunn/fzf.vim.git'

@@ -35,6 +35,8 @@ require('lazy').setup({
   {'tpope/vim-surround'},
   {'tpope/vim-repeat'},
   {'tpope/vim-unimpaired'},
+  {'tpope/vim-eunuch'},
+  {'tpope/vim-vinegar'},
   {'junegunn/fzf'},
   {'junegunn/fzf.vim'},
   {'williamboman/mason.nvim'},
