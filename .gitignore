@@ -7,7 +7,7 @@ node_modules/
 .vscode/
 *~
 .*.sw*
-*.pyc 
+*.pyc
 bin/
 *.pkl
 *.hdf5

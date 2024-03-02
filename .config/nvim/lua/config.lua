@@ -37,6 +37,9 @@ require('lazy').setup({
   {'tpope/vim-unimpaired'},
   {'tpope/vim-eunuch'},
   {'tpope/vim-vinegar'},
+  {'tpope/vim-flagship'},
+  {'tpope/vim-tbone'},
+  {'ntpeters/vim-better-whitespace'},
   {'junegunn/fzf'},
   {'junegunn/fzf.vim'},
   {'williamboman/mason.nvim'},
@@ -65,10 +68,16 @@ require('lazy').setup({
   {
     'hrsh7th/cmp-buffer',
   },
+  {
+    'folke/trouble.nvim',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true
+  },
 })
-
--- Set colorscheme
-vim.opt.termguicolors = true
 
 ---
 -- LSP setup
@@ -83,6 +92,7 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', {buffer = bufnr})
   vim.keymap.set('n', 'gz', '<cmd>lua vim.lsp.buf.rename()<cr>', {buffer = bufnr})
   vim.keymap.set('n', 'g.', '<cmd>lua vim.lsp.buf.code_action()<cr>', {buffer = bufnr})
+  vim.keymap.set('n', 'tr', function() require("trouble").toggle() end)
 end)
 
 --- if you want to know more about lsp-zero and mason.nvim

@@ -20,7 +20,7 @@ Plugin 'https://github.com/tpope/vim-fugitive.git'
 Plugin 'https://github.com/tpope/vim-obsession.git'
 " surround for useful surround commands
 Plugin 'https://github.com/tpope/vim-surround.git'
-" repeat for better repeat functionality 
+" repeat for better repeat functionality
 Plugin 'https://github.com/tpope/vim-repeat.git'
 " Unimpaired for common ex commands
 Plugin 'https://github.com/tpope/vim-unimpaired.git'
@@ -28,9 +28,15 @@ Plugin 'https://github.com/tpope/vim-unimpaired.git'
 Plugin 'https://github.com/tpope/vim-eunuch.git'
 " vinegar for better directory navigation
 Plugin 'https://github.com/tpope/vim-vinegar.git'
+" flagship for status and tab line
+Plugin 'https://github.com/tpope/vim-flagship.git'
+" tbone for tmux integration
+Plugin 'https://github.com/tpope/vim-tbone.git'
 " fzf for fuzzy search (also integrates with ag)
 Plugin 'https://github.com/junegunn/fzf.git'
 Plugin 'https://github.com/junegunn/fzf.vim.git'
+" vim-better-whitespace for better whitespace highlighting
+Plugin 'https://github.com/ntpeters/vim-better-whitespace.git'
 " Kotlin syntax highlighting
 Plugin 'https://github.com/udalov/kotlin-vim.git'
 
@@ -47,12 +53,10 @@ set relativenumber
 colorscheme onedark
 " Turn on incremental search
 set incsearch
-" Case insensitive searches 
+" Case insensitive searches
 set ignorecase
 " Search will be case sensitive if it contains an uppercase letter
 set smartcase
-" Set line numbers
-set number
 " Set tabs as spaces initially, sleuth will adjust based on file
 set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " Allow for switching between edited buffers
@@ -69,6 +73,10 @@ autocmd FileType * set formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType c,cpp set commentstring=//\ %s
 " Add ruler
 set colorcolumn=80
+" For status and tab line to persist
+set laststatus=2
+set showtabline=2
+set guioptions-=e
 
 " Set switching time between modes and cursor modes, may have to do slightly
 " different based on os and terminal type
