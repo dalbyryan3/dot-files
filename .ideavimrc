@@ -1,0 +1,12 @@
+source ~/.vimrc
+" These would likely work just sourcing vimrc rather than explicitly declaring here if vimrc used vim-plug
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+
+map gz <Action>(RenameElement)
+map gC <Action>(Compare.SameVersion)
+map gl <Action>(QuickImplementations)
+map gr <Action>(FindUsages)
+map gh <Action>(QuickJavaDoc)
+map g. <Action>(ShowIntentionActions)
+

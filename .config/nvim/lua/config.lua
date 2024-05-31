@@ -39,6 +39,8 @@ require('lazy').setup({
   {'tpope/vim-vinegar'},
   {'tpope/vim-flagship'},
   {'tpope/vim-tbone'},
+  {'tpope/vim-rsi'},
+  {'tpope/vim-abolish'},
   {'ntpeters/vim-better-whitespace'},
   {'junegunn/fzf'},
   {'junegunn/fzf.vim'},
@@ -99,7 +101,7 @@ end)
 --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed= {'tsserver', 'pyright', 'ruby_ls'},
+  ensure_installed= {'tsserver', 'pyright', 'ruby_ls', 'smithy_ls', 'kotlin_language_server', 'eslint'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()

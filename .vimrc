@@ -36,6 +36,8 @@ Plugin 'https://github.com/tpope/vim-tbone.git'
 Plugin 'https://github.com/tpope/vim-rsi.git'
 " endwise to add certain end structures automatically
 Plugin 'https://github.com/tpope/vim-endwise.git'
+" abolish to work with word variants
+Plugin 'https://github.com/tpope/vim-abolish.git'
 " fzf for fuzzy search (also integrates with ag)
 Plugin 'https://github.com/junegunn/fzf.git'
 Plugin 'https://github.com/junegunn/fzf.vim.git'
