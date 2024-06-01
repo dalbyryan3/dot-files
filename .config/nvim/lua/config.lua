@@ -94,20 +94,31 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', {buffer = bufnr})
   vim.keymap.set('n', 'gz', '<cmd>lua vim.lsp.buf.rename()<cr>', {buffer = bufnr})
   vim.keymap.set('n', 'g.', '<cmd>lua vim.lsp.buf.code_action()<cr>', {buffer = bufnr})
-  vim.keymap.set('n', 'tr', function() require("trouble").toggle() end)
+  vim.keymap.set('n', 'tr', function() require('trouble').toggle('diagnostics') end)
 end)
 
 --- if you want to know more about lsp-zero and mason.nvim
 --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed= {'tsserver', 'pyright', 'ruby_ls', 'smithy_ls', 'kotlin_language_server', 'eslint'},
+  ensure_installed= {'tsserver', 'basedpyright', 'ruby_lsp', 'smithy_ls', 'kotlin_language_server', 'eslint'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
       -- (Optional) configure lua language server
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+    basedpyright = function()
+      require('lspconfig').basedpyright.setup({
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "standard"
+            }
+          }
+        }
+      })
     end,
   }
 })
