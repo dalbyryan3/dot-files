@@ -64,7 +64,7 @@ require('lazy').setup({
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
-      {'L3MON4D3/LuaSnip'}
+      {'L3MON4D3/LuaSnip'},
     },
   },
   {
@@ -144,22 +144,7 @@ cmp.setup({
     end,
   },
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
-  -- mapping = cmp.mapping.preset.insert({
-  --   ["<Tab>"] = cmp.mapping(function(fallback)
-  --     -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
-  --     if cmp.visible() then
-  --       local entry = cmp.get_selected_entry()
-	-- if not entry then
-	  -- cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-	-- else
-	  -- cmp.confirm()
-	-- end
-  --     else
-  --       fallback()
-  --     end
-  --   end, {"i","s","c",}),
-  -- })
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ["<TAB>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -184,7 +169,24 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-  },
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    --   -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+    --   if cmp.visible() then
+    --     local entry = cmp.get_selected_entry()
+	-- if not entry then
+	  -- cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+	-- else
+	  -- cmp.confirm()
+	-- end
+    --   else
+    --     fallback()
+    --   end
+    -- end, {"i","s","c",}),
+
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
@@ -197,5 +199,11 @@ cmp.setup({
         end
       }
     },
-  })
+  }),
+  experimental = {
+    ghost_text = true,
+  }
 })
+
+vim.lsp.set_log_level('debug')
+
