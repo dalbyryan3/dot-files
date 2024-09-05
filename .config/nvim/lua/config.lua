@@ -63,6 +63,12 @@ require('lazy').setup({
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
+    dependencies = {
+      {
+        dir = "/local/home/ryadalby/workplace/AmazonQNVim/src/AmazonQNVim",
+        build = ":AmazonQAuth",
+      },
+    },
   },
   {
     'hrsh7th/cmp-buffer',
@@ -194,6 +200,17 @@ require("ibl").setup {
 ---
 local cmp = require('cmp')
 
+local amazonq = require("AmazonQNVim")
+amazonq.setup({
+  ssoStartUrl = "https://amzn.awsapps.com/start",
+  filetypes = { 'amazonq', 'java', 'python', 'typescript', 'javascript', 'csharp', 'ruby', 'kotlin', 'shell', 'sql', 'c', 'cpp', 'go', 'rust', 'lua' },
+  lsp_server_cmd = {
+    "node",
+    "/local/home/ryadalby/workplace/AmazonQNVim/src/AmazonQNVim/language-server/build/aws-lsp-codewhisperer-token-binary.js",
+    "--stdio",
+  },
+})
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -235,6 +252,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
+    { name = 'amazonq' },
   }, {
     {
       name = 'buffer',
