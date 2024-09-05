@@ -68,6 +68,9 @@ require('lazy').setup({
     'hrsh7th/cmp-buffer',
   },
   {
+    'hrsh7th/cmp-cmdline',
+  },
+  {
     'folke/trouble.nvim',
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
@@ -148,13 +151,24 @@ cmp.setup({
       else
         fallback()
       end
-    end, {"i","s","c",}),
+    end, {"i","s","c"}),
 
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-c>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+    -- cmdline only maps
+    ["<C-n>"] = { c = cmp.mapping.select_next_item() },
+    ["<C-p>"] = { c = cmp.mapping.select_prev_item() },
+    ["<C-e>"] = { c = cmp.mapping.abort() },
+    ["<C-y>"] = {
+      c = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      }),
+    },
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -174,5 +188,20 @@ cmp.setup({
   }
 })
 
-vim.lsp.set_log_level('debug')
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
 
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline', }
+  }),
+})
+
+vim.lsp.set_log_level('debug')
