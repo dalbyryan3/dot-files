@@ -82,6 +82,27 @@ require('lazy').setup({
   -- vsnip
   {'hrsh7th/cmp-vsnip'},
   {'hrsh7th/vim-vsnip'},
+  -- Illuminate
+  {'RRethy/vim-illuminate'},
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    config = function ()
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "typescript" },
+          sync_install = false,
+          highlight = { enable = false },
+          indent = { enable = true },
+        })
+    end
+
+  },
 })
 
 ---
@@ -104,7 +125,7 @@ end)
 --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed= {'tsserver', 'basedpyright', 'ruby_lsp', 'smithy_ls', 'kotlin_language_server', 'eslint'},
+  ensure_installed= {'ts_ls', 'basedpyright', 'ruby_lsp', 'smithy_ls', 'kotlin_language_server', 'eslint'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -125,6 +146,36 @@ require('mason-lspconfig').setup({
     end,
   }
 })
+
+---
+-- Illuminate config
+---
+local exclude_illuminate_ft = { "help", "git", "markdown", "snippets", "text",
+"gitconfig", "alpha", "dashboard", "dirbuf", "dirvish", "fugitive" }
+require('illuminate').configure({
+  -- delay: delay in milliseconds
+  delay = 100,
+     -- providers: provider used to get references in the buffer, ordered by priority
+  providers = {
+    'lsp',
+    'treesitter',
+  },
+  filetypes_denylist = exclude_illuminate_ft,
+})
+vim.cmd('hi IlluminatedWordText cterm=underline')
+vim.cmd('hi IlluminatedWordRead cterm=underline')
+vim.cmd('hi IlluminatedWordWrite cterm=underline')
+
+require("ibl").setup {
+  indent = { char = "|"},
+  scope = {
+    enabled = true,
+  },
+  exclude = {
+    filetypes = exclude_illuminate_ft,
+    buftypes = { "terminal" },
+  },
+}
 
 ---
 -- Autocompletion config
