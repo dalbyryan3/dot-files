@@ -208,7 +208,6 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-c>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
     -- cmdline only maps
     ["<C-n>"] = { c = cmp.mapping.select_next_item() },
