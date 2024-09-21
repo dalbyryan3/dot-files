@@ -69,7 +69,7 @@ set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 set hidden
 " Turn off flashing/visual bell, may need newer Vim version (7.4+) so may need to comment out
 set belloff=all
-" Allow backpace of previously inserted characters
+" Allow backspace of previously inserted characters
 set backspace=indent,eol,start
 " Only be able to select text and not line numbers
 set mouse+=a
@@ -83,6 +83,8 @@ set colorcolumn=80
 set laststatus=2
 set showtabline=2
 set guioptions-=e
+" Have netrw send to last edited file
+let g:netrw_altfile = 1
 
 " Set switching time between modes and cursor modes, may have to do slightly
 " different based on os and terminal type

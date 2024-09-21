@@ -10,7 +10,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-# Set default editor 
+# Set default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
