@@ -9,4 +9,5 @@ map gl <Action>(QuickImplementations)
 map gr <Action>(FindUsages)
 map gh <Action>(QuickJavaDoc)
 map g. <Action>(ShowIntentionActions)
-
+nnoremap g; :action JumpToLastChange<Enter>
+nnoremap g, :action JumpToNextChange<Enter>

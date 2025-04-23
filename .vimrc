@@ -49,6 +49,8 @@ Plugin 'https://github.com/udalov/kotlin-vim.git'
 call vundle#end()
 " Turn on file type detection, plugin, and indent
 filetype plugin indent on
+" Basic auto indenting
+set autoindent
 
 " General Vim setup:
 " Syntax highlighting
