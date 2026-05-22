@@ -9,7 +9,7 @@ if not uv.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath,
   })
   print('Done.')
@@ -17,17 +17,24 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+-- Always show the sign column so diagnostics don't shift the display
+vim.opt.signcolumn = 'yes'
+-- Lower CursorHold delay for faster document highlight (default 4000ms)
+vim.opt.updatetime = 300
+
 require('lazy').setup({
+  -- Colorscheme (overrides .vimrc's joshdick/onedark.vim which remains for plain vim)
   {
-    "joshdick/onedark.vim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    'navarasu/onedark.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      -- load the colorscheme here
       vim.cmd([[set termguicolors]])
-      vim.cmd([[colorscheme onedark]])
+      require('onedark').setup({ style = 'dark' })
+      require('onedark').load()
     end,
   },
+  -- Tpope essentials (mirror .vimrc for nvim-specific loading)
   {'tpope/vim-commentary'},
   {'tpope/vim-sleuth'},
   {'tpope/vim-fugitive'},
@@ -44,149 +51,158 @@ require('lazy').setup({
   {'ntpeters/vim-better-whitespace'},
   {'junegunn/fzf'},
   {'junegunn/fzf.vim'},
-  {'williamboman/mason.nvim'},
-  {'williamboman/mason-lspconfig.nvim'},
-  {'udalov/kotlin-vim'},
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    lazy = true,
-    config = false,
-  },
-  -- LSP Support
-  {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      {'hrsh7th/cmp-nvim-lsp'},
-    }
-  },
+  -- LSP infrastructure
+  {'mason-org/mason.nvim'},
+  {'mason-org/mason-lspconfig.nvim'},
+  {'neovim/nvim-lspconfig'},
+  -- Java LSP (ftplugin-driven, not auto-enabled by mason-lspconfig)
+  {'mfussenegger/nvim-jdtls'},
   -- Autocompletion
-  {
-    'hrsh7th/nvim-cmp',
-  },
-  {
-    'hrsh7th/cmp-buffer',
-  },
-  {
-    'hrsh7th/cmp-cmdline',
-  },
+  {'hrsh7th/nvim-cmp'},
+  {'hrsh7th/cmp-nvim-lsp'},
+  {'hrsh7th/cmp-buffer'},
+  {'hrsh7th/cmp-cmdline'},
+  {'hrsh7th/cmp-vsnip'},
+  {'hrsh7th/vim-vsnip'},
+  -- UI
   {
     'folke/trouble.nvim',
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true
+    event = 'InsertEnter',
+    config = true,
   },
-  -- vsnip
-  {'hrsh7th/cmp-vsnip'},
-  {'hrsh7th/vim-vsnip'},
-  -- Illuminate
-  {'RRethy/vim-illuminate'},
   {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
+    'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
   },
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    config = function ()
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "elixir", "heex", "javascript", "html", "typescript" },
-          sync_install = false,
-          highlight = { enable = false },
-        })
-    end
-
-  },
-})
-
----
--- LSP setup
----
-local lsp_zero = require('lsp-zero')
-
-lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
-  vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', {buffer = bufnr})
-  vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', {buffer = bufnr})
-  vim.keymap.set('n', 'gz', '<cmd>lua vim.lsp.buf.rename()<cr>', {buffer = bufnr})
-  vim.keymap.set('n', 'g.', '<cmd>lua vim.lsp.buf.code_action()<cr>', {buffer = bufnr})
-  vim.keymap.set('n', 'tr', function() require('trouble').toggle('diagnostics') end)
-end)
-
---- if you want to know more about lsp-zero and mason.nvim
---- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed= {'ts_ls', 'basedpyright', 'ruby_lsp', 'smithy_ls', 'kotlin_language_server', 'eslint'},
-  handlers = {
-    lsp_zero.default_setup,
-    lua_ls = function()
-      -- (Optional) configure lua language server
-      local lua_opts = lsp_zero.nvim_lua_ls()
-      require('lspconfig').lua_ls.setup(lua_opts)
-    end,
-    basedpyright = function()
-      require('lspconfig').basedpyright.setup({
-        settings = {
-          basedpyright = {
-            analysis = {
-              typeCheckingMode = "standard"
-            }
-          }
-        }
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+          'c', 'lua', 'vim', 'vimdoc', 'query',
+          'java', 'kotlin',
+          'javascript', 'typescript', 'html',
+          'elixir', 'heex',
+        },
+        sync_install = false,
+        highlight = { enable = true },
+        indent = {
+          enable = true,
+          disable = { 'java' },
+        },
       })
     end,
-  }
-})
-
----
--- Illuminate config
----
-local exclude_illuminate_ft = { "help", "git", "markdown", "snippets", "text",
-"gitconfig", "alpha", "dashboard", "dirbuf", "dirvish", "fugitive" }
-require('illuminate').configure({
-  -- delay: delay in milliseconds
-  delay = 100,
-     -- providers: provider used to get references in the buffer, ordered by priority
-  providers = {
-    'lsp',
-    'treesitter',
   },
-  filetypes_denylist = exclude_illuminate_ft,
 })
 
--- change the highlight style
-vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
-vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
-vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+---
+-- LSP setup (native Neovim 0.11+ pattern, replaces lsp-zero)
+---
 
---- auto update the highlight style on colorscheme change
-vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-  pattern = { "*" },
+-- Advertise cmp capabilities to all language servers
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.lsp.config('*', {
+  capabilities = lsp_capabilities,
+})
+
+-- Per-server configuration via vim.lsp.config (replaces lsp-zero handlers)
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
+      },
+    },
+  },
+})
+
+vim.lsp.config('basedpyright', {
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = 'standard',
+      },
+    },
+  },
+})
+
+-- Mason installs servers, mason-lspconfig auto-enables them via vim.lsp.enable()
+require('mason').setup({
+  pip = {
+    install_args = { '--constraint', os.getenv('HOME') .. '/.config/pip/constraints.txt' },
+  },
+})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'ts_ls', 'basedpyright', 'ruby_lsp', 'smithy_ls',
+    'kotlin_language_server', 'eslint', 'lua_ls', 'jdtls',
+  },
+  -- jdtls is managed by nvim-jdtls via ftplugin, not auto-enabled here
+  automatic_enable = {
+    exclude = { 'jdtls' },
+  },
+})
+
+-- LSP keymaps and document highlight on attach
+vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
-    vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
-    vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
-    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
-  end
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'gz', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', 'g.', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'tr', function() require('trouble').toggle('diagnostics') end, opts)
+
+    -- Highlight other references of symbol under cursor
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client and client.supports_method('textDocument/documentHighlight') then
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        buffer = ev.buf,
+        callback = vim.lsp.buf.document_highlight,
+      })
+      vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+        buffer = ev.buf,
+        callback = vim.lsp.buf.clear_references,
+      })
+    end
+  end,
 })
 
-require("ibl").setup {
-  indent = { char = "|"},
-  scope = {
-    enabled = true,
-  },
+---
+-- Document highlight (native, replaces vim-illuminate)
+---
+local exclude_highlight_ft = { 'help', 'git', 'markdown', 'snippets', 'text',
+  'gitconfig', 'alpha', 'dashboard', 'dirbuf', 'dirvish', 'fugitive' }
+
+vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'Visual' })
+vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'Visual' })
+vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'Visual' })
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = '*',
+  callback = function()
+    vim.api.nvim_set_hl(0, 'LspReferenceText', { link = 'Visual' })
+    vim.api.nvim_set_hl(0, 'LspReferenceRead', { link = 'Visual' })
+    vim.api.nvim_set_hl(0, 'LspReferenceWrite', { link = 'Visual' })
+  end,
+})
+
+require('ibl').setup({
+  indent = { char = '|' },
+  scope = { enabled = true },
   exclude = {
-    filetypes = exclude_illuminate_ft,
-    buftypes = { "terminal" },
+    filetypes = exclude_highlight_ft,
+    buftypes = { 'terminal' },
   },
-}
+})
 
 ---
 -- Autocompletion config
@@ -196,40 +212,31 @@ local cmp = require('cmp')
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      vim.fn['vsnip#anonymous'](args.body)
     end,
   },
--- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
   mapping = cmp.mapping.preset.insert({
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         local entry = cmp.get_selected_entry()
-	if not entry then
-	  cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-	else
-	  cmp.confirm()
-	end
+        if not entry then
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+        else
+          cmp.confirm()
+        end
       else
         fallback()
       end
-    end, {"i","s","c"}),
-
+    end, { 'i', 's', 'c' }),
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-c>'] = cmp.mapping.abort(),
-
-    -- cmdline only maps
-    ["<C-n>"] = { c = cmp.mapping.select_next_item() },
-    ["<C-p>"] = { c = cmp.mapping.select_prev_item() },
-    ["<C-e>"] = { c = cmp.mapping.abort() },
-    ["<C-y>"] = {
-      c = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
-      }),
-    },
+    -- cmdline only
+    ['<C-n>'] = { c = cmp.mapping.select_next_item() },
+    ['<C-p>'] = { c = cmp.mapping.select_prev_item() },
+    ['<C-e>'] = { c = cmp.mapping.abort() },
+    ['<C-y>'] = { c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }) },
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -240,29 +247,22 @@ cmp.setup({
       option = {
         get_bufnrs = function()
           return vim.api.nvim_list_bufs()
-        end
-      }
+        end,
+      },
     },
   }),
   experimental = {
     ghost_text = true,
-  }
+  },
 })
 
--- `/` cmdline setup.
 cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' }
-  }
+  sources = { { name = 'buffer' } },
 })
 
--- `:` cmdline setup.
 cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline', }
-  }),
+  sources = cmp.config.sources(
+    { { name = 'path' } },
+    { { name = 'cmdline' } }
+  ),
 })
-
-vim.lsp.set_log_level('debug')

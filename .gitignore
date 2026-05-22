@@ -8,6 +8,10 @@ node_modules/
 *~
 .*.sw*
 *.pyc
+
+# Ignore everything in .config/ by default, whitelist what we track
+.config/*
+!.config/nvim/
 bin/
 *.pkl
 *.hdf5
