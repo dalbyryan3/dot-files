@@ -163,10 +163,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Highlight other references of symbol under cursor
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client and client.supports_method('textDocument/documentHighlight') then
+    if client and client:supports_method('textDocument/documentHighlight') then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
         buffer = ev.buf,
-        callback = vim.lsp.buf.document_highlight,
+        -- recheck live clients (autocmd survives LspStop/restart/crash)
+        callback = function()
+          for _, c in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+            if c:supports_method('textDocument/documentHighlight') then
+              vim.lsp.buf.document_highlight()
+              return
+            end
+          end
+        end,
       })
       vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
         buffer = ev.buf,
