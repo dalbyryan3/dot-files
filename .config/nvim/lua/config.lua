@@ -30,7 +30,16 @@ require('lazy').setup({
     priority = 1000,
     config = function()
       vim.cmd([[set termguicolors]])
-      require('onedark').setup({ style = 'dark' })
+      require('onedark').setup({
+        style = 'dark',
+        -- Comment/@comment/@lsp.type.comment all paint comments (LSP semantic tokens win when attached)
+        highlights = {
+          Comment = { fg = '$fg' },
+          ['@comment'] = { fg = '$fg' },
+          ['@comment.documentation'] = { fg = '$fg' },
+          ['@lsp.type.comment'] = { fg = '$fg' },
+        },
+      })
       require('onedark').load()
     end,
   },
