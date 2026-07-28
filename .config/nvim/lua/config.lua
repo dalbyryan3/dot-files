@@ -97,6 +97,7 @@ require('lazy').setup({
           'java', 'kotlin',
           'javascript', 'typescript', 'html',
           'elixir', 'heex',
+          'smithy',
         },
         sync_install = false,
         highlight = { enable = true },
@@ -140,6 +141,10 @@ vim.lsp.config('basedpyright', {
       },
     },
   },
+})
+
+vim.lsp.config('smithy_ls', {
+  cmd = { 'smithy-language-server' },
 })
 
 -- Mason installs servers, mason-lspconfig auto-enables them via vim.lsp.enable()
